@@ -122,6 +122,14 @@ print(sumario)
 # Sleep.Hours                        0.4804911 0.012048169   0.4570616   0.5034083 1.001520 3356.358 2064.240
 # Sample.Question.Papers.Practiced   0.1935118 0.006884574   0.1799088   0.2069274 1.000393 4429.311 2039.887
 
+# Seleciona apenas as colunas desejadas
+tabela_resumo <- sumario[, c("Estimate", "Est.Error", "l-95% CI", "u-95% CI", "Rhat")]
+# Instale o pacote se ainda não tiver
+install.packages("knitr")
+
+library(knitr)
+kable(tabela_resumo, digits = 2, caption = "Resumo dos Parâmetros do Modelo")
+
 # 3. Traceplots individuais (opcional, requer bayesplot)
 mcmc_trace(as.array(modelo), pars = c("b_Hours.Studied", "b_Previous.Scores", "b_Sleep.Hours"))
 
